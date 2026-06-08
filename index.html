@@ -5,7 +5,7 @@
     <style>
         body {
             background-color: #050505;
-            color: white;
+            color: #ff4d6d;
             font-family: 'Fira Code', monospace;
             display: flex;
             justify-content: center;
@@ -15,44 +15,49 @@
             overflow: hidden;
         }
 
-        /* تأثير الخط المتوهج */
-        .glow-text {
-            text-shadow: 0 0 10px rgba(255, 77, 109, 0.5), 0 0 20px rgba(255, 77, 109, 0.3);
-            font-size: 80px;
+        /* شكل القلب المكون من كلمة Love */
+        .heart-shape {
             position: relative;
+            font-size: 20px;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 0 0 8px #ff4d6d;
+            animation: pulse 2s infinite;
         }
 
-        /* تأثير مؤشر الكتابة الوامض */
-        .terminal-cursor {
-            border-right: 2px solid #ff4d6d;
-            animation: blink 1s step-end infinite;
+        /* الحرف S في المنتصف */
+        .center-s {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            color: white;
+            text-shadow: 0 0 20px #fff;
         }
 
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: #ff4d6d; }
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        /* تأثير خطوط المسح (Scanline) */
+        /* تأثير خطوط المسح */
         .scanline {
-            width: 100%; height: 100px; z-index: 10;
-            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0) 100%);
-            opacity: 0.1; position: absolute; bottom: 100%;
-            animation: scanline 10s linear infinite;
+            width: 100%; height: 2px; background: rgba(255, 255, 255, 0.05);
+            position: absolute; animation: scan 8s linear infinite;
         }
-
-        @keyframes scanline {
-            0% { bottom: 100%; }
-            100% { bottom: -100px; }
-        }
+        @keyframes scan { from { top: 0; } to { top: 100%; } }
     </style>
 </head>
 <body>
 
 <div class="scanline"></div>
 
-<div class="glow-text">
-    <span class="terminal-cursor">S</span>
+<div class="heart-shape">
+    Love Love Love Love Love Love<br>
+    Love Love Love Love Love Love Love Love<br>
+    Love Love Love Love Love Love Love Love<br>
+    Love Love Love Love Love Love<br>
+    Love Love Love Love<br>
+    Love Love<br>
+    Love
+    <div class="center-s">S</div>
 </div>
 
 </body>
