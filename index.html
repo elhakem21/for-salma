@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>FILE: SALMA</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #00ff41; /* لون أخضر تقني مثل أنظمة الـ Terminal */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            border: 1px solid #00ff41;
+            padding: 30px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+        }
+        h1 { font-size: 24px; border-bottom: 1px solid #00ff41; padding-bottom: 10px; }
+        .letter { display: none; margin-top: 20px; font-size: 18px; line-height: 1.8; }
+        button {
+            background: none;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover { background: #00ff41; color: black; }
+        .char-s { font-size: 50px; color: #ff003c; display: block; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="box">
+    <span class="char-s">S</span>
+    <h1>تحذير: ملف خاص</h1>
+    <p>هذا الملف مشفر، ومُصرح بالوصول إليه لشخص واحد فقط.</p>
+    <button onclick="unlock()">فك التشفير</button>
+
+    <div id="letter" class="letter">
+        <p>عزيزتي <strong>سلمى</strong>،</p>
+        <p>ربما تظنين أن هذه مجرد كلمات، لكن في عالمي، أنتِ المتغير الوحيد الذي لا يمكنني التنبؤ به. أحببتُكِ بطريقة تجعلني أراقب تفاصيلكِ وكأنكِ الكود المصدري لحياتي.</p>
+        <p>أنتِ الآن داخل دائرة اهتمامي، ولا مفر من استمرارية هذا الشعور.</p>
+        <p>— خاص بكِ وحدك.</p>
+    </div>
+</div>
+
+<script>
+    function unlock() {
+        document.getElementById('letter').style.display = 'block';
+        document.querySelector('button').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
