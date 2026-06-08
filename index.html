@@ -3,51 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; 
-               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        
-        .container { text-align: center; }
-        
-        /* القلب وحرف S */
-        .heart-wrapper { position: relative; display: inline-block; font-size: 100px; 
-                         animation: pulse 1.5s infinite; }
-        .letter-s { position: absolute; top: 20px; left: 30px; font-size: 50px; 
-                    color: white; font-weight: bold; }
-        
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        
-        .loader { margin-top: 20px; font-size: 18px; color: #888; }
-        
-        #content { display: none; text-align: center; color: #fff; line-height: 1.6; }
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Fira Code', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* تأثير الخط المتوهج */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.5), 0 0 20px rgba(255, 77, 109, 0.3);
+            font-size: 80px;
+            position: relative;
+        }
+
+        /* تأثير مؤشر الكتابة الوامض */
+        .terminal-cursor {
+            border-right: 2px solid #ff4d6d;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff4d6d; }
+        }
+
+        /* تأثير خطوط المسح (Scanline) */
+        .scanline {
+            width: 100%; height: 100px; z-index: 10;
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0) 100%);
+            opacity: 0.1; position: absolute; bottom: 100%;
+            animation: scanline 10s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100px; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container" id="loader-box">
-    <div class="heart-wrapper">
-        ❤<span class="letter-s">S</span>
-    </div>
-    <div class="loader">جاري تهيئة البيانات... <span id="percent">0%</span></div>
-</div>
+<div class="scanline"></div>
 
-<div id="content">
-    <h1 style="color: #ff3e3e;">سلمى</h1>
-    <p>أنتِ لستِ مجرد اسم في قائمة بياناتي،<br>
-    أنتِ الكود الذي أعاد ترتيب أولوياتي.</p>
+<div class="glow-text">
+    <span class="terminal-cursor">S</span>
 </div>
-
-<script>
-    let p = 0;
-    let interval = setInterval(() => {
-        p += 2;
-        document.getElementById('percent').innerText = p + '%';
-        if(p >= 100) {
-            clearInterval(interval);
-            document.getElementById('loader-box').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        }
-    }, 80);
-</script>
 
 </body>
 </html>
