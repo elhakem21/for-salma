@@ -2,61 +2,51 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>FILE: SALMA</title>
     <style>
-        body {
-            background-color: #050505;
-            color: #00ff41; /* لون أخضر تقني مثل أنظمة الـ Terminal */
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .container {
-            border: 1px solid #00ff41;
-            padding: 30px;
-            width: 80%;
-            max-width: 500px;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
-        }
-        h1 { font-size: 24px; border-bottom: 1px solid #00ff41; padding-bottom: 10px; }
-        .letter { display: none; margin-top: 20px; font-size: 18px; line-height: 1.8; }
-        button {
-            background: none;
-            border: 1px solid #00ff41;
-            color: #00ff41;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover { background: #00ff41; color: black; }
-        .char-s { font-size: 50px; color: #ff003c; display: block; margin-bottom: 10px; }
+        body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; 
+               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        
+        .container { text-align: center; }
+        
+        /* القلب وحرف S */
+        .heart-wrapper { position: relative; display: inline-block; font-size: 100px; 
+                         animation: pulse 1.5s infinite; }
+        .letter-s { position: absolute; top: 20px; left: 30px; font-size: 50px; 
+                    color: white; font-weight: bold; }
+        
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        
+        .loader { margin-top: 20px; font-size: 18px; color: #888; }
+        
+        #content { display: none; text-align: center; color: #fff; line-height: 1.6; }
     </style>
 </head>
 <body>
 
-<div class="container" id="box">
-    <span class="char-s">S</span>
-    <h1>تحذير: ملف خاص</h1>
-    <p>هذا الملف مشفر، ومُصرح بالوصول إليه لشخص واحد فقط.</p>
-    <button onclick="unlock()">فك التشفير</button>
-
-    <div id="letter" class="letter">
-        <p>عزيزتي <strong>سلمى</strong>،</p>
-        <p>ربما تظنين أن هذه مجرد كلمات، لكن في عالمي، أنتِ المتغير الوحيد الذي لا يمكنني التنبؤ به. أحببتُكِ بطريقة تجعلني أراقب تفاصيلكِ وكأنكِ الكود المصدري لحياتي.</p>
-        <p>أنتِ الآن داخل دائرة اهتمامي، ولا مفر من استمرارية هذا الشعور.</p>
-        <p>— خاص بكِ وحدك.</p>
+<div class="container" id="loader-box">
+    <div class="heart-wrapper">
+        ❤<span class="letter-s">S</span>
     </div>
+    <div class="loader">جاري تهيئة البيانات... <span id="percent">0%</span></div>
+</div>
+
+<div id="content">
+    <h1 style="color: #ff3e3e;">سلمى</h1>
+    <p>أنتِ لستِ مجرد اسم في قائمة بياناتي،<br>
+    أنتِ الكود الذي أعاد ترتيب أولوياتي.</p>
 </div>
 
 <script>
-    function unlock() {
-        document.getElementById('letter').style.display = 'block';
-        document.querySelector('button').style.display = 'none';
-    }
+    let p = 0;
+    let interval = setInterval(() => {
+        p += 2;
+        document.getElementById('percent').innerText = p + '%';
+        if(p >= 100) {
+            clearInterval(interval);
+            document.getElementById('loader-box').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+    }, 80);
 </script>
 
 </body>
