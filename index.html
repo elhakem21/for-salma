@@ -3,42 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { background: #050505; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        body { background-color: #050505; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
         
-        /* حاوية القلب */
-        .heart-container { position: relative; width: 200px; height: 200px; }
-        
-        /* المسار الخارجي للقلب (خط باهت) */
-        .heart-path {
-            width: 100%; height: 100%;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 29.6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-11.7,16-21.2C32,3.8,28.2,0,23.6,0z' fill='none' stroke='%23333' stroke-width='2'/%3E%3C/svg%3E") no-repeat center;
-            background-size: contain;
+        .heart-container {
+            position: relative;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #ff003c;
+            line-height: 1.1;
+            text-shadow: 0 0 10px #ff003c;
+            animation: pulse 2s infinite;
         }
 
-        /* شريط التحميل الذي يتشكل كقلب */
-        .heart-progress {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 29.6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath id='heart' d='M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-11.7,16-21.2C32,3.8,28.2,0,23.6,0z' fill='none' stroke='%23ff4d6d' stroke-width='4' stroke-dasharray='100' stroke-dashoffset='100'/%3E%3C/svg%3E") no-repeat center;
-            background-size: contain;
-            animation: load 4s linear forwards;
-        }
-
-        /* حرف S في المنتصف */
         .center-s {
-            position: absolute; top: 50%; left: 50%;
+            position: absolute;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            font-family: 'Fira Code', monospace; font-size: 60px; color: #fff;
-            text-shadow: 0 0 15px #ff4d6d;
+            font-size: 120px;
+            color: #fff;
+            text-shadow: 0 0 30px #ff003c, 0 0 50px #ff003c;
+            font-weight: bold;
         }
 
-        @keyframes load { to { stroke-dashoffset: 0; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
     </style>
 </head>
 <body>
 
 <div class="heart-container">
-    <div class="heart-path"></div>
-    <div class="heart-progress"></div>
+    <div style="font-size: 12px;">I love you I love you I love you I love you</div>
+    <div style="font-size: 14px;">I love you I love you I love you I love you I love you I love you</div>
+    <div style="font-size: 16px;">I love you I love you I love you I love you I love you I love you</div>
+    <div style="font-size: 18px;">I love you I love you I love you I love you I love you</div>
+    <div style="font-size: 16px;">I love you I love you I love you I love you</div>
+    <div style="font-size: 14px;">I love you I love you</div>
+    <div style="font-size: 12px;">I love you</div>
+    
     <div class="center-s">S</div>
 </div>
 
