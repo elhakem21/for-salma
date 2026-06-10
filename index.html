@@ -3,6 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <style>
+        body { background: #050505; color: #ff3e3e; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Courier New', monospace; }
+        
+        #heart-svg { width: 300px; fill: none; stroke: #ff3e3e; stroke-width: 2; }
+        .draw-path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 3s linear forwards; }
+        
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+        
+        #text-container { position: absolute; width: 300px; height: 300px; display: none; }
+        .love-text { position: absolute; font-size: 10px; color: #ff3e3e; }
+    </style>
+</head>
+<body>
+
+<svg id="heart-svg" viewBox="0 0 32 29.6">
+    <path class="draw-path" d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-11.7,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+</svg>
+
+<div id="text-container"></div>
+
+<script>
+    // بعد 3 ثوانٍ من انتهاء رسم القلب، نبدأ تعبئة القلب بالكلمات
+    setTimeout(() => {
+        document.getElementById('heart-svg').style.display = 'none';
+        document.getElementById('text-container').style.display = 'block';
+        
+        const container = document.getElementById('text-container');
+        for(let i = 0; i < 50; i++) {
+            let span = document.createElement('span');
+            span.innerHTML = "سلمى ";
+            span.className = 'love-text';
+            span.style.left = Math.random() * 250 + 'px';
+            span.style.top = Math.random() * 250 + 'px';
+            container.appendChild(span);
+        }
+    }, 3200);
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <style>
         body { background: #050505; color: #ff3e3e; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: monospace; }
         canvas { display: block; }
         .overlay { position: absolute; text-align: center; pointer-events: none; }
