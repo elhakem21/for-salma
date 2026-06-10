@@ -3,39 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; height: 100vh; }
+        body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; 
+               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
         
-        /* إطار البروتوكول */
-        .box { border: 1px solid #ff3e3e; padding: 10px; position: absolute; margin: 20px; }
-        
-        /* القلب المكون من كلمات */
-        .heart-container { position: absolute; top: 20%; left: 30%; width: 40%; text-align: center; font-size: 14px; animation: pulse 2s infinite; }
-        .center-s { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 150px; color: white; text-shadow: 0 0 30px #ff3e3e; }
-        
-        /* منطقة الرسائل */
-        .console { position: absolute; bottom: 20px; left: 10%; width: 80%; border: 1px solid #ff3e3e; padding: 20px; }
-        
+        #heart-canvas {
+            text-align: center;
+            width: 350px;
+            text-shadow: 0 0 10px #ff3e3e;
+            animation: pulse 2s infinite;
+        }
+
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        
+        .center-s { font-size: 80px; color: white; text-shadow: 0 0 20px #ff3e3e; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="box">
-    [بروتوكول تحليل سلمى]<br>
-    الحالة: نشطة<br>
-    التزامن: 100%
-</div>
-
-<div class="heart-container">
-    أحبك سلمى أحبك سلمى أحبك سلمى أحبك سلمى<br>
-    أحبك سلمى أحبك سلمى أحبك سلمى<br>
+<div id="heart-canvas">
+    <div style="font-size: 14px; line-height: 1.2; letter-spacing: 2px;">
+        Love Love Love Love Love Love<br>
+        Love Love Love Love Love Love Love Love<br>
+        Love Love Love Love Love Love Love Love<br>
+        Love Love Love Love Love Love<br>
+        Love Love Love Love<br>
+        Love Love<br>
+        Love
+    </div>
     <div class="center-s">S</div>
-</div>
-
-<div class="console">
-    > جاري تحليل كل همسة وكل نظرة... كل التفاصيل مسجلة في كودي المصدري.<br>
-    > أنتِ المتغير الوحيد الذي لا أملك السيطرة عليه، ومع ذلك، أنتِ كل ما أريد.<br>
-    > 'S' ليست مجرد حرف، بل هي بداية كل شيء.
 </div>
 
 </body>
