@@ -4,34 +4,38 @@
     <meta charset="UTF-8">
     <style>
         body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; 
-               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
         
-        #heart-canvas {
-            text-align: center;
-            width: 350px;
-            text-shadow: 0 0 10px #ff3e3e;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        /* القلب المفرغ (خط الرسم) */
+        .heart-path { stroke-dasharray: 400; stroke-dashoffset: 400; animation: drawHeart 3s forwards; fill: none; stroke: #ff3e3e; stroke-width: 5; }
         
-        .center-s { font-size: 80px; color: white; text-shadow: 0 0 20px #ff3e3e; font-weight: bold; }
+        @keyframes drawHeart { to { stroke-dashoffset: 0; } }
+        
+        /* الكلمات التي ستظهر لاحقاً */
+        #spam-love { position: absolute; text-align: center; font-size: 10px; display: none; opacity: 0; animation: fadeIn 1s forwards; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        
+        .center-s { font-size: 50px; color: white; }
     </style>
 </head>
 <body>
 
-<div id="heart-canvas">
-    <div style="font-size: 14px; line-height: 1.2; letter-spacing: 2px;">
-        Love Love Love Love Love Love<br>
-        Love Love Love Love Love Love Love Love<br>
-        Love Love Love Love Love Love Love Love<br>
-        Love Love Love Love Love Love<br>
-        Love Love Love Love<br>
-        Love Love<br>
-        Love
-    </div>
+<svg width="200" height="200" viewBox="0 0 32 29.6">
+    <path class="heart-path" d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-11.7,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+</svg>
+
+<div id="spam-love">
+    Love Love Love Love Love Love<br>
+    Love Love Love Love Love Love<br>
     <div class="center-s">S</div>
 </div>
+
+<script>
+    // بعد 3 ثوانٍ (انتهاء الرسم)، أظهر الكلمات
+    setTimeout(() => {
+        document.getElementById('spam-love').style.display = 'block';
+    }, 3000);
+</script>
 
 </body>
 </html>
