@@ -3,38 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; 
-               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        
-        /* القلب المفرغ (خط الرسم) */
-        .heart-path { stroke-dasharray: 400; stroke-dashoffset: 400; animation: drawHeart 3s forwards; fill: none; stroke: #ff3e3e; stroke-width: 5; }
-        
-        @keyframes drawHeart { to { stroke-dashoffset: 0; } }
-        
-        /* الكلمات التي ستظهر لاحقاً */
-        #spam-love { position: absolute; text-align: center; font-size: 10px; display: none; opacity: 0; animation: fadeIn 1s forwards; }
-        @keyframes fadeIn { to { opacity: 1; } }
-        
-        .center-s { font-size: 50px; color: white; }
+        body { background: #050505; color: #ff3e3e; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: monospace; }
+        canvas { display: block; }
+        .overlay { position: absolute; text-align: center; pointer-events: none; }
+        .center-s { font-size: 100px; color: white; text-shadow: 0 0 20px #ff3e3e; }
     </style>
 </head>
 <body>
 
-<svg width="200" height="200" viewBox="0 0 32 29.6">
-    <path class="heart-path" d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-11.7,16-21.2C32,3.8,28.2,0,23.6,0z"/>
-</svg>
-
-<div id="spam-love">
-    Love Love Love Love Love Love<br>
-    Love Love Love Love Love Love<br>
-    <div class="center-s">S</div>
-</div>
+<canvas id="heartCanvas"></canvas>
+<div class="overlay"><div class="center-s">S</div></div>
 
 <script>
-    // بعد 3 ثوانٍ (انتهاء الرسم)، أظهر الكلمات
-    setTimeout(() => {
-        document.getElementById('spam-love').style.display = 'block';
-    }, 3000);
+    const canvas = document.getElementById('heartCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.text = "سلمى"; // الكلمة التي ستشكل القلب
+            this.targetX = 0;
+            this.targetY = 0;
+        }
+        draw() {
+            ctx.fillStyle = "#ff3e3e";
+            ctx.font = "12px Arial";
+            ctx.fillText(this.text, this.x, this.y);
+        }
+        update() {
+            // معادلة رسم القلب الرياضية
+            let t = Math.random() * Math.PI * 2;
+            this.targetX = canvas.width/2 + 100 * (16 * Math.pow(Math.sin(t), 3));
+            this.targetY = canvas.height/2 - 100 * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+            
+            this.x += (this.targetX - this.x) * 0.05;
+            this.y += (this.targetY - this.y) * 0.05;
+        }
+    }
+
+    for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+    function animate() {
+        ctx.fillStyle = "rgba(5, 5, 5, 0.1)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+    }
+    animate();
 </script>
 
 </body>
