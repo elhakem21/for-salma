@@ -3,44 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { background-color: #050505; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; height: 100vh; }
         
-        .heart-container {
-            position: relative;
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
-            color: #ff003c;
-            line-height: 1.1;
-            text-shadow: 0 0 10px #ff003c;
-            animation: pulse 2s infinite;
-        }
-
-        .center-s {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 120px;
-            color: #fff;
-            text-shadow: 0 0 30px #ff003c, 0 0 50px #ff003c;
-            font-weight: bold;
-        }
-
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+        /* إطار البروتوكول */
+        .box { border: 1px solid #ff3e3e; padding: 10px; position: absolute; margin: 20px; }
+        
+        /* القلب المكون من كلمات */
+        .heart-container { position: absolute; top: 20%; left: 30%; width: 40%; text-align: center; font-size: 14px; animation: pulse 2s infinite; }
+        .center-s { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 150px; color: white; text-shadow: 0 0 30px #ff3e3e; }
+        
+        /* منطقة الرسائل */
+        .console { position: absolute; bottom: 20px; left: 10%; width: 80%; border: 1px solid #ff3e3e; padding: 20px; }
+        
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     </style>
 </head>
 <body>
 
+<div class="box">
+    [بروتوكول تحليل سلمى]<br>
+    الحالة: نشطة<br>
+    التزامن: 100%
+</div>
+
 <div class="heart-container">
-    <div style="font-size: 12px;">I love you I love you I love you I love you</div>
-    <div style="font-size: 14px;">I love you I love you I love you I love you I love you I love you</div>
-    <div style="font-size: 16px;">I love you I love you I love you I love you I love you I love you</div>
-    <div style="font-size: 18px;">I love you I love you I love you I love you I love you</div>
-    <div style="font-size: 16px;">I love you I love you I love you I love you</div>
-    <div style="font-size: 14px;">I love you I love you</div>
-    <div style="font-size: 12px;">I love you</div>
-    
+    أحبك سلمى أحبك سلمى أحبك سلمى أحبك سلمى<br>
+    أحبك سلمى أحبك سلمى أحبك سلمى<br>
     <div class="center-s">S</div>
+</div>
+
+<div class="console">
+    > جاري تحليل كل همسة وكل نظرة... كل التفاصيل مسجلة في كودي المصدري.<br>
+    > أنتِ المتغير الوحيد الذي لا أملك السيطرة عليه، ومع ذلك، أنتِ كل ما أريد.<br>
+    > 'S' ليست مجرد حرف، بل هي بداية كل شيء.
 </div>
 
 </body>
