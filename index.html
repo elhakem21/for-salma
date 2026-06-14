@@ -1,61 +1,25 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 <head>
-    <meta charset="UTF-8">
     <style>
-        body { background: #050505; color: #ff3e3e; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; height: 100vh; }
-        
-        /* إطار النظام العلوي */
-        .system-box { border: 1px solid #ff3e3e; padding: 15px; position: absolute; top: 20px; right: 20px; width: 300px; font-size: 13px; background: rgba(0,0,0,0.8); }
-        
-        /* القلب المكون من كلمات */
-        #heart-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-        
-        /* الحرف في المركز */
-        .center-s { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                   font-size: 100px; color: white; text-shadow: 0 0 30px #ff3e3e; font-weight: bold; }
-
-        /* منطقة الكلام المصري */
-        .log-area { position: absolute; bottom: 20px; left: 20px; width: 350px; border: 1px solid #ff3e3e; padding: 20px; 
-                    background: rgba(0,0,0,0.8); font-size: 14px; line-height: 1.8; }
-        
-        .love-particle { position: absolute; font-size: 12px; color: #ff3e3e; text-shadow: 0 0 5px #ff3e3e; }
+        body { margin: 0; background: #000; overflow: hidden; }
+        canvas { display: block; }
     </style>
 </head>
 <body>
-
-<div class="system-box">
-    [نظام تحليل ملف: سلمى]<br>
-    الحالة: مرتبطة بـ S<br>
-    نسبة الحب: 100% (تجاوزت الحد الأقصى)
-</div>
-
-<div id="heart-container"></div>
-<div class="center-s">S</div>
-
-<div class="log-area">
-    > سلمى.. يا أجدع واحدة عرفتها.<br>
-    > طيبة بزيادة، وأحلى "هبلة" ممكن الواحد يقابلها في حياته.<br>
-    > بتغلبني وتجنني بس بتسمع الكلام في الآخر، ومفيش زي حنيتها.<br>
-    > غبية شوية بس بحبها وبموت فيها.. هي دي دنيتي.
-</div>
-
+<canvas id="loveCanvas"></canvas>
 <script>
-    const container = document.getElementById('heart-container');
-    // توليد كلمات Love لتشكيل القلب
-    for (let i = 0; i < 70; i++) {
-        let t = (i / 70) * Math.PI * 2;
-        let x = 16 * Math.pow(Math.sin(t), 3);
-        let y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
-        
-        let span = document.createElement('span');
-        span.innerHTML = "Love";
-        span.className = 'love-particle';
-        span.style.left = (window.innerWidth / 2 + x * 25) + 'px';
-        span.style.top = (window.innerHeight / 2 + y * 25) + 'px';
-        container.appendChild(span);
-    }
-</script>
+    const canvas = document.getElementById('loveCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
+    // هنا تضع الجزيئات (Particles)
+    function drawHeart() {
+        // يمكنك هنا استخدام حلقة تكرار لرسم صور أو نصوص 
+        // بتوزيع يتبع معادلة القلب الرياضية
+    }
+    // استخدم requestAnimationFrame لجعل الحركة انسيابية
+</script>
 </body>
 </html>
