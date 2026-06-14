@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إلى أمي الغالية</title>
+    <title>إلى أمي الحبيبة</title>
     <style>
         body { margin: 0; background: #0a0a0a; color: #ffca3a; font-family: 'Arial', sans-serif; overflow: hidden; height: 100vh; }
-        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: grab; }
         .overlay { position: absolute; top: 15%; width: 100%; text-align: center; pointer-events: none; }
-        .center-text { font-size: 60px; color: #ffca3a; text-shadow: 0 0 30px #ffca3a; font-weight: bold; }
-        
-        .message-area { position: absolute; bottom: 30px; width: 100%; text-align: center; 
-                        padding: 20px; font-size: 18px; line-height: 2; z-index: 10; color: #fff; }
+        .center-text { font-size: 50px; color: #ffca3a; text-shadow: 0 0 20px #ffca3a; font-weight: bold; }
+        .message-area { position: absolute; bottom: 30px; width: 100%; text-align: center; padding: 20px; font-size: 16px; color: #fff; z-index: 10; }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
 
@@ -23,8 +21,7 @@
 </div>
 
 <div class="message-area">
-    إلى من تعبت لأرتاح، وسهرت لأنام، وضحّت لأحيا.<br>
-    أنتِ القلب الذي ينبض في صدري، دمتِ لي نوراً وحياة.
+    حرك الشاشة بإصبعك لتستكشف القلب.. دمتِ لي نوراً وحياة.
 </div>
 
 <div id="canvas-container"></div>
@@ -36,9 +33,13 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('canvas-container').appendChild(renderer.domElement);
 
+    // إضافة التحكم (OrbitControls)
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; // لجعل الحركة ناعمة (Smooth)
+
     const scale = window.innerWidth < 600 ? 0.2 : 0.25;
     const particles = new THREE.BufferGeometry();
-    const count = 5000; // زدت عدد الجزيئات ليكون التأثير أكثر فخامة
+    const count = 5000;
     const positions = new Float32Array(count * 3);
     
     for(let i=0; i<count*3; i+=3) {
@@ -49,7 +50,6 @@
     }
     
     particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    // اللون الذهبي يليق بالوالدة
     const material = new THREE.PointsMaterial({color: 0xffca3a, size: 0.03});
     const heart = new THREE.Points(particles, material);
     scene.add(heart);
@@ -58,7 +58,7 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        heart.rotation.y += 0.003; // حركة هادئة وبطيئة
+        controls.update(); // ضروري لتشغيل التحكم
         renderer.render(scene, camera);
     }
     animate();
